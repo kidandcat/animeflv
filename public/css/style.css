@@ -1,0 +1,197 @@
+
+html {
+    background-color: #fff;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    color: #0B0B0B;
+    height: 100%;
+    line-height: 1;   
+}
+
+
+
+input:focus {
+    outline: none;
+}
+
+.logo_naranja {
+    margin-left: 2em;
+}
+
+.marginZero{
+    margin-bottom: 0;
+}
+
+body {
+    background: #fff;
+    max-width: 1000px;
+    border-left: 3px solid #ccc;
+    border-right: 3px solid #ccc;
+}
+
+.logo_container {
+    border-bottom: 3px solid;
+    border-color: #ff8200;
+    background: white;
+    background: url(/images/bg_header.png) #fbfbfb;
+}
+
+#nav_bar {
+    background: #191919 url(/images/bg_nav.png) repeat-x;
+    height: 40px;
+    line-height: 40px;
+}
+
+footer {
+    color: #fff;
+    bottom: 0;
+    width: 100%;
+    height: 49px;
+    background: #303030;
+    border-top: 3px solid #ff8200;
+    line-height: 17px;
+}
+
+footer .h3 {
+    margin-top: 7px;
+    margin-left: 10px;
+    height: 17px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+footer span {
+    margin-left: 10px;
+    display: block;
+    color: #878787;
+    font-size: 12px;
+}
+
+aside {
+    border-left: 1px solid #ccc;
+}
+
+.lista_simple li a:link, .lista_simple li a:visited {
+    color: #000;
+    font-weight: bold;
+    display: block;
+    padding-left: 30px;
+}
+
+.lista_estrella li{
+    background: url(/images/estrella.png) 7px 6px no-repeat;
+    height: 30px;
+    border-top: 1px dotted #ccc;
+}
+
+
+.lista_estrella li:hover {
+    border-top: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.lista_estrella li:hover + li {
+    border-top: 1px solid #ccc;
+}
+
+.lista_estrella li a {
+    line-height: 30px;
+}
+
+aside h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bolder;
+    /*border-bottom: 1px solid #ccc;*/
+    border-top: 1px solid #ccc;
+    line-height: 33px;
+    padding-left: 10px;
+    background: url(/images/fondo_tit_der.png);
+    height: 33px;
+    color: #5b5b5b;
+}
+
+.lista_simple a {
+    position: relative;
+    z-index: 50;
+}
+
+.lista_simple li:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+}
+
+.social_foot {
+    margin-top: 9px;
+}
+
+html, footer {
+    background-image: url(/images/squares.png);
+}
+
+.nav_btn {
+        color: #999;
+        padding: 0 15px 0 15px;
+}
+
+.nav_btn:hover {
+        color: #fff;
+        text-decoration: none;
+}
+
+.nav_btn_active {
+        color: #fff;
+}
+
+.buscador {
+    
+    background-color: #303030; 
+}
+
+.buscador input {
+    color: #fff;
+    border-radius: 0;
+    border: 0;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px 0 10px;
+    background: #303030 url(/images/bg_buscador.png) repeat-x;
+}
+
+.buscador span {
+    position: relative;
+    top: -40px;
+    left: 90%;
+}
+
+#main h1 {
+    font-size: 16px;
+    font-weight: bolder;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 7px;
+    margin-bottom: 7px;
+    height: 2em;
+}
+
+.uk-overlay-panel {
+    padding: 7px;
+}
+
+#not-container a {
+    height: 106px;
+    max-width: 213.328px;
+    cursor: pointer;
+}
+
+#not-container a img{
+    height: 106px;
+    max-width: 213.328px;
+}
+
+#not-container a span{
+    max-width: 201px;
+}

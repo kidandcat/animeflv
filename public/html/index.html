@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Template</title>
+    <link rel="stylesheet" href="css/jairo.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="uk-align-center marginZero">
+    <header>
+        <div class="uk-width-1-1 logo_container">
+            <img class="logo_naranja" src="/images/logo_naranja.png" alt="">
+        </div>
+        <div id="nav_bar" class="uk-flex">
+            <div class="uk-margin-left uk-width-7-10">
+                <a class="nav_btn nav_btn_active">Inicio</a>
+                <a class="nav_btn">Animes</a>
+                <a class="nav_btn">Manga</a>
+            </div>
+            <div class="uk-width-1-4 uk-margin-right uk-align-right buscador uk-height-1-1 uk-hidden-small">
+                <input type="text" class="uk-width-1-1" placeholder="Buscar...">
+                <span class="uk-icon-search uk-icon-hover"></span>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="uk-flex">
+        <section id="main" class="uk-width-7-10">
+            <h1 class="uk-margin-left uk-margin-right">Ultimos Episodios Agregados</h1>
+            <div id="not-container" class="uk-margin-left uk-flex uk-margin-bottom uk-flex-wrap">
+            </div>
+        </section>
+        <aside class="uk-width-3-10">
+            <h3>Episodios mas vistos ayer</h3>
+            <nav id="lista_estrella" class="uk-list lista_simple lista_estrella">
+            </nav>
+        </aside>
+    </main>
+    <footer class="uk-flex">
+        <div class="uk-width-9-10">
+            <div class="h3">
+                Anime Online - AnimeFLV
+            </div>
+            <span class="uk-hidden-small">
+            Ningún vídeo se encuentra alojado en nuestros servidores | AnimeFLV.NET 2016
+            </span>
+        </div>
+        <div class="uk-width-1-10 social_foot uk-hidden-small">
+            <img src="/images/fb_32.png" alt="Facebook de AnimeFLV">
+            <img src="/images/rss_32.png" alt="RSS de AnimeFLV">
+        </div>
+
+    </footer>
+    <script src="js/jairo.min.js"></script>
+    <!-- BEGIN   Dust.js templates -->
+    <script type="text/dust" id="DUST_lista_estrella">
+        <li><a href="{link}">{text}</a></li>
+    </script>
+    <script type="text/dust" id="DUST_not_container">
+        <a class="uk-margin-right uk-margin-bottom uk-overlay uk-flex-item-auto" href="{link}">
+            <img class="uk-border-rounded uk-width-1-1" src="{image}" border="0">
+            <span class="uk-border-rounded uk-overlay-panel uk-overlay-background uk-overlay-bottom">{text}</span>
+        </a>
+    </script>
+    <script>
+        function link_estrella(link) {
+            dust.renderSource(document.getElementById("DUST_lista_estrella").textContent, link, function (err, out) {
+                document.getElementById("lista_estrella").innerHTML += out;
+            });
+        }
+
+        function anime_not(anime) {
+            dust.renderSource(document.getElementById("DUST_not_container").textContent, anime, function (err, out) {
+                document.getElementById("not-container").innerHTML += out;
+            });
+        }
+    </script>
+    <!--  END    Dust.js templates -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
