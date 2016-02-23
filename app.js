@@ -9,11 +9,9 @@ var routes = require('./routes/index');
 
 var app = express();
 
-// Set maximum lag to an aggressive value.
-toobusy.maxLag(10);
-// Set check interval to a faster value. This will catch more latency spikes
-// but may cause the check to be too sensitive.
-toobusy.interval(1000);
+
+//toobusy.maxLag(40);
+//toobusy.interval(700);
 app.use(function(req, res, next) {
   if (toobusy()) {
     res.send(503, "I'm busy right now, sorry.");
