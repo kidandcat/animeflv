@@ -29,7 +29,7 @@ router.get('/:anime/:episode', function (req, res, next) {
 
 
 
-setTimeout(crawl, 60000);
+setInterval(function(){crawl()}, 60000);
 crawl();
 
 
