@@ -21,7 +21,6 @@ router.get('/stars', function (req, res, next) {
 });
 
 router.get('/:anime/:episode', function (req, res, next) {
-    console.log('anime');
     var anime = req.params.anime;
     var episode = req.params.episode;
     res.redirect('http://animeflv.net/ver/' + anime + '-' + episode + '.html');
@@ -29,13 +28,12 @@ router.get('/:anime/:episode', function (req, res, next) {
 
 
 
-setInterval(function(){crawl()}, 60000);
+setInterval(function(){crawl()}, 120000);
 crawl();
 
 
 function crawl() {
     http.get({ host: 'localhost', port: 88 }, function (response) {
-        // Continuously update stream with data
         var body = '';
         response.on('data', function (d) {
             body += d;
@@ -45,7 +43,6 @@ function crawl() {
         });
     });
     http.get({ host: 'localhost', port: 89 }, function (response) {
-        // Continuously update stream with data
         var body = '';
         response.on('data', function (d) {
             body += d;
