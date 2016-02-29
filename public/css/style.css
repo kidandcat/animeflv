@@ -199,3 +199,8 @@ html, footer {
 .nav_btn {
   display: inline-block;  
 }
+
+
+.uk-icon-star {
+    color: yellow;
+}

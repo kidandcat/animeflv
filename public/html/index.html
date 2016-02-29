@@ -64,9 +64,10 @@
     </script>
 
     <script type="text/dust" id="DUST_not_container">
-        <a class="uk-margin-right uk-margin-bottom uk-overlay uk-flex-item-auto" onclick="main_video({anime:'{link.anime}',episode:'{link.episode}'})">
-            <img class="uk-border-rounded uk-width-1-1" src="{image}" border="0">
-            <span class="uk-border-rounded uk-overlay-panel uk-overlay-background uk-overlay-bottom">{text}</span>
+        <a class="uk-margin-right uk-margin-bottom uk-overlay uk-flex-item-auto" >
+            <img onclick="main_video({anime:'{link.anime}',episode:'{link.episode}'})" class="uk-border-rounded uk-width-1-1" src="{image}" border="0">
+            <span onclick="main_video({anime:'{link.anime}',episode:'{link.episode}'})" class="uk-border-rounded uk-overlay-panel uk-overlay-background uk-overlay-bottom">{text}</span>
+            <span class="uk-overlay-panel uk-overlay-top" onclick="favorite(this)"><i class="uk-icon-star-o uk-icon-medium uk-align-right"></i></span>
         </a>
     </script>
 
@@ -96,50 +97,8 @@
         </section>
     </script>
 
-    <script>
-        
-        function link_estrella(links) {
-            links.forEach(function (el) {
-                var anime = el.text.split(" ");
-                var episode = anime.pop();
-                anime = anime.join(" ");
-                var obj = {
-                    text: el.text,
-                    link: {anime: anime, episode: episode}
-                };
-                dust.renderSource(document.getElementById("DUST_lista_estrella").textContent, obj, function (err, out) {
-                    document.getElementById("lista_estrella").innerHTML += out;
-                });
-            });
-        }
-
-        function anime_not(animes) {
-            animes.forEach(function (el) {
-                var obj = {
-                    image: el.image,
-                    text: el.anime.split('-').join(' ') + ' ' + el.episode,
-                    link: {anime: el.anime.split('-').join(' '), episode: el.episode}
-                };
-                dust.renderSource(document.getElementById("DUST_not_container").textContent, obj, function (err, out) {
-                    document.getElementById("not-container").innerHTML += out;
-                });
-            });
-        }
-        
-        function main_list(){
-            dust.renderSource(document.getElementById("DUST_main_list").textContent, {}, function (err, out) {
-                document.getElementsByTagName("main")[0].innerHTML = out;
-            });
-            load_main();
-        }
-        
-        function main_video(anime){
-            dust.renderSource(document.getElementById("DUST_main_video").textContent, anime, function (err, out) {
-                document.getElementsByTagName("main")[0].innerHTML = out;
-            });
-        }
-    </script>
     <!--  END    Dust.js templates -->
+    <script src="js/fp2.min.js"></script>
     <script src="js/jairo.min.js"></script>
     <script src="js/main.js"></script>
 </body>
