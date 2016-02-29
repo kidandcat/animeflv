@@ -32,6 +32,15 @@ app.use(function(req, res, next) {
   } 
 });
 
+app.use(function(req, res, next) {
+  if (req.protocol != 'https') {
+    res.redirect(301, "https://" + req.headers["host"] + req.url);
+  } else {
+    next();
+  } 
+});
+
+
 // view engine setup
 /*app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');*/
