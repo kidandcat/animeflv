@@ -195,3 +195,7 @@ html, footer {
 #not-container a span{
     max-width: 201px;
 }
+
+.nav_btn {
+  display: inline-block;  
+}

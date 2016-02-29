@@ -11,23 +11,17 @@ function ajax(route, callback) {
 
 
 
-ajax('/animes', function (res) {
-    var response = JSON.parse(res);
-    response.forEach(function (el) {
-        anime_not({
-            image: el.image,
-            text: el.anime.split('-').join(' ') + ' ' + el.episode,
-            link: '/' + el.anime + '/' + el.episode
-        });
-    });
-})
+function load_main() {
+    ajax('/animes', function (res) {
+        var response = JSON.parse(res);
+        anime_not(response);
+    })
 
-ajax('/stars', function (res) {
-    var response = JSON.parse(res);
-    response.forEach(function (el) {
-        link_estrella({
-            text: el.text,
-            link: el.link
-        });
-    });
-})
+    ajax('/stars', function (res) {
+        var response = JSON.parse(res);
+        link_estrella(response);
+    })
+}
+load_main();
+
+

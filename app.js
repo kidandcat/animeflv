@@ -1,14 +1,26 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
+var http = require('http');
+var fs = require('fs');
+var https = require('https');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var toobusy = require('toobusy-js');
 var routes = require('./routes/index');
 
+var privatekey = fs.readFileSync('/etc/letsencrypt/live/galax.be/privkey.pem', 'utf8');
+var certificate = fs.readFileSync('/etc/letsencrypt/live/galax.be/privkey.pem', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+
 var app = express();
 
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+//httpServer.listen(80);
+httpsServer.listen(443);
 
 //toobusy.maxLag(40);
 //toobusy.interval(700);
@@ -59,5 +71,4 @@ app.use(function(err, req, res, next) {
   res.sendFile(__dirname + '/public/html/error.html');
 });
 
-app.listen('8080');
 module.exports = app;

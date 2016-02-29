@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Template</title>
+    <title>Anime Online - AnimeFLV</title>
     <link rel="stylesheet" href="css/jairo.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -16,7 +16,7 @@
         </div>
         <div id="nav_bar" class="uk-flex">
             <div class="uk-margin-left uk-width-7-10">
-                <a class="nav_btn nav_btn_active">Inicio</a>
+                <a class="nav_btn nav_btn_active" onclick="main_list()">Inicio</a>
                 <a class="nav_btn">Animes</a>
                 <a class="nav_btn">Manga</a>
             </div>
@@ -40,6 +40,7 @@
             </nav>
         </aside>
     </main>
+
     <footer class="uk-flex">
         <div class="uk-width-9-10">
             <div class="h3">
@@ -53,33 +54,93 @@
             <img src="/images/fb_32.png" alt="Facebook de AnimeFLV">
             <img src="/images/rss_32.png" alt="RSS de AnimeFLV">
         </div>
-
     </footer>
-    <script src="js/jairo.min.js"></script>
+
+
+
     <!-- BEGIN   Dust.js templates -->
     <script type="text/dust" id="DUST_lista_estrella">
-        <li><a href="{link}">{text}</a></li>
+        <li><a href="#" onclick="main_video({anime:'{link.anime}',episode:'{link.episode}'})">{text}</a></li>
     </script>
+
     <script type="text/dust" id="DUST_not_container">
-        <a class="uk-margin-right uk-margin-bottom uk-overlay uk-flex-item-auto" href="{link}">
+        <a class="uk-margin-right uk-margin-bottom uk-overlay uk-flex-item-auto" onclick="main_video({anime:'{link.anime}',episode:'{link.episode}'})">
             <img class="uk-border-rounded uk-width-1-1" src="{image}" border="0">
             <span class="uk-border-rounded uk-overlay-panel uk-overlay-background uk-overlay-bottom">{text}</span>
         </a>
     </script>
+
+    <script type="text/dust" id="DUST_main_list">
+        <section id="main" class="uk-width-7-10">
+            <h1 class="uk-margin-left uk-margin-right">Ultimos Episodios Agregados</h1>
+            <div id="not-container" class="uk-margin-left uk-flex uk-margin-bottom uk-flex-wrap">
+            </div>
+        </section>
+        <aside class="uk-width-3-10 uk-hidden-small">
+            <h3>Episodios mas vistos ayer</h3>
+            <nav id="lista_estrella" class="uk-list lista_simple lista_estrella">
+            </nav>
+        </aside>
+    </script>
+
+    <script type="text/dust" id="DUST_main_video">
+        <aside class="uk-width-3-10 uk-hidden-small">
+            <h3>Lista episodios</h3>
+            <nav id="lista_estrella" class="uk-list lista_simple lista_estrella">
+            </nav>
+        </aside>
+        <section id="main" class="uk-width-7-10">
+            <h1 class="uk-margin-left uk-margin-right">{anime} {episode}</h1>
+            <div id="not-container" class="uk-margin-left uk-flex uk-margin-bottom uk-flex-wrap">
+            </div>
+        </section>
+    </script>
+
     <script>
-        function link_estrella(link) {
-            dust.renderSource(document.getElementById("DUST_lista_estrella").textContent, link, function (err, out) {
-                document.getElementById("lista_estrella").innerHTML += out;
+        
+        function link_estrella(links) {
+            links.forEach(function (el) {
+                var anime = el.text.split(" ");
+                var episode = anime.pop();
+                anime = anime.join(" ");
+                var obj = {
+                    text: el.text,
+                    link: {anime: anime, episode: episode}
+                };
+                dust.renderSource(document.getElementById("DUST_lista_estrella").textContent, obj, function (err, out) {
+                    document.getElementById("lista_estrella").innerHTML += out;
+                });
             });
         }
 
-        function anime_not(anime) {
-            dust.renderSource(document.getElementById("DUST_not_container").textContent, anime, function (err, out) {
-                document.getElementById("not-container").innerHTML += out;
+        function anime_not(animes) {
+            animes.forEach(function (el) {
+                var obj = {
+                    image: el.image,
+                    text: el.anime.split('-').join(' ') + ' ' + el.episode,
+                    link: {anime: el.anime.split('-').join(' '), episode: el.episode}
+                };
+                dust.renderSource(document.getElementById("DUST_not_container").textContent, obj, function (err, out) {
+                    document.getElementById("not-container").innerHTML += out;
+                });
+            });
+        }
+        
+        function main_list(){
+            dust.renderSource(document.getElementById("DUST_main_list").textContent, {}, function (err, out) {
+                document.getElementsByTagName("main")[0].innerHTML = out;
+            });
+            load_main();
+        }
+        
+        function main_video(anime){
+            dust.renderSource(document.getElementById("DUST_main_video").textContent, anime, function (err, out) {
+                document.getElementsByTagName("main")[0].innerHTML = out;
             });
         }
     </script>
     <!--  END    Dust.js templates -->
+    <script src="js/jairo.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 
