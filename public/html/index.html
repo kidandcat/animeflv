@@ -115,10 +115,8 @@
 
         function anime_not(animes) {
             animes.forEach(function (el) {
-                var imgFixed = el.image.split('http')[1];
-                imgFixed = 'https' + imgFixed;
                 var obj = {
-                    image: imgFixed,
+                    image: el.image,
                     text: el.anime.split('-').join(' ') + ' ' + el.episode,
                     link: {anime: el.anime.split('-').join(' '), episode: el.episode}
                 };

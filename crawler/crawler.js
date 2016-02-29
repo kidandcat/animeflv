@@ -99,6 +99,8 @@ function begin() {
                             console.log(animes[a]);
                             var image = animes[a].querySelector('img');
                             image = image.getAttribute('src');
+                            var imgFixed = image.split('http')[1];
+                            imgFixed = 'https' + imgFixed;
                             var anime = animes[a].getAttribute('title');
                             anime = anime.split(' ');
                             var episode = anime.pop();
@@ -106,7 +108,7 @@ function begin() {
                             res.push({
                                 anime: anime,
                                 episode: episode,
-                                image: image
+                                image: imgFixed
                             });
                         } catch (e) {
                             console.log(e);
