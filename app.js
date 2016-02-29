@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 var toobusy = require('toobusy-js');
 var routes = require('./routes/index');
 
-var privatekey = fs.readFileSync('/etc/letsencrypt/live/galax.be/privkey.pem', 'utf8');
+var privateKey = fs.readFileSync('/etc/letsencrypt/live/galax.be/privkey.pem', 'utf8');
 var certificate = fs.readFileSync('/etc/letsencrypt/live/galax.be/privkey.pem', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
 
