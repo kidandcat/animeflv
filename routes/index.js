@@ -61,7 +61,12 @@ function crawl() {
             body += d;
         });
         response.on('end', function () {
-            animes = JSON.parse(body);
+            try{
+                animes = JSON.parse(body);
+            }catch(e){
+                console.log(body);
+                animes = body;
+            }
         });
     });
     http.get({ host: 'localhost', port: 89 }, function (response) {
